@@ -1,6 +1,7 @@
 package ui
 
 import (
+	"strings"
 	"testing"
 
 	t "github.com/darrenburns/terma"
@@ -33,6 +34,18 @@ func TestClickMethodSelectorOpensMenu(tt *testing.T) {
 	clickID(tt, app, methodSelectorID)
 	if !app.menuOpen.Peek() {
 		tt.Fatal("the method menu didn't open")
+	}
+}
+
+func TestClickEnvironmentSelectorOpensPicker(tt *testing.T) {
+	app := testApp()
+	p := t.NewPilot(tt, app, snapW, snapH)
+	if !strings.Contains(p.ScreenText(), "Environment: local") {
+		tt.Fatalf("header doesn't show the active environment:\n%s", p.ScreenText())
+	}
+	p.Click("environment-selector")
+	if !strings.Contains(p.ScreenText(), "No environment") {
+		tt.Fatalf("environment button didn't open the chooser:\n%s", p.ScreenText())
 	}
 }
 
