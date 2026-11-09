@@ -239,8 +239,9 @@ directory you started Posting from, if there is one.
 
 ## Switching environments
 
-The header at the top of the screen shows the active environment. To switch, click its name, or
-press ++ctrl+p++ and choose **Switch environment…**.
+The header at the top of the screen shows the active environment. Click the **Environment: _name_ ▾** button to
+open the environment chooser, or press ++ctrl+p++ and choose **Switch environment…**. Posting starts with
+the remembered environment for this collection, or the default environment if none has been chosen.
 
 The switcher lists every environment Posting can find in the directories above, with how many
 variables each has and the files it's made from. Choose **No environment** to use only

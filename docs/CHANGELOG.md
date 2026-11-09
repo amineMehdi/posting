@@ -1,3 +1,9 @@
+## [Unreleased]
+
+### Added
+
+- An **Environment** button in the header opens the environment chooser, so you can switch environments without restarting Posting.
+
 ## 3.0.0-beta.1 [15th October 2026]
 
 ### Added

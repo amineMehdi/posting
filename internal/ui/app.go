@@ -1183,10 +1183,8 @@ func (h header) Build(ctx t.BuildContext) t.Widget {
 	a := h.app
 	env := a.envName()
 	envLabel := "no environment"
-	envColor := theme.TextMuted
 	if env != "" {
 		envLabel = env
-		envColor = theme.AccentText
 	}
 	return t.Row{
 		Style: t.Style{Width: t.Flex(1), Height: t.Cells(1), Padding: t.EdgeInsetsXY(2, 0), BackgroundColor: theme.Background},
@@ -1195,12 +1193,11 @@ func (h header) Build(ctx t.BuildContext) t.Widget {
 			// The collection sits beside the environment: together they
 			// are what you are working in.
 			t.Text{Content: a.collection.Get().Name + "   ", Style: t.Style{ForegroundColor: theme.TextMuted}},
-			t.Text{
-				Spans: []t.Span{
-					{Text: a.icons.environment, Style: t.SpanStyle{Foreground: envColor}},
-					{Text: envLabel, Style: t.SpanStyle{Foreground: envColor, Bold: env != ""}},
-				},
-				Click: func(t.MouseEvent) { a.openEnvironmentPicker() },
+			t.Button{
+				ID:      "environment-selector",
+				Label:   a.icons.environment + " Environment: " + envLabel + " ▾",
+				OnPress: a.openEnvironmentPicker,
+				Click:   func(t.MouseEvent) { a.openEnvironmentPicker() },
 			},
 			t.ShowWhen(a.settings.Heading.ShowHost, t.ParseMarkupToText("   [$TextMuted]"+escapeMarkup(a.icons.host)+a.host+"[/]", theme)),
 		},
